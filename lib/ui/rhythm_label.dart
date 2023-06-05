@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:metronome2/store/rhythm_store.dart';
+import 'package:metronome/store/rhythm_store.dart';
 
 class RhythmLabel extends StatelessWidget {
   const RhythmLabel({super.key});

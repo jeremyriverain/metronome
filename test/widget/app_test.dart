@@ -1,11 +1,11 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:metronome2/audio_player_provider.dart';
-import 'package:metronome2/constants.dart';
-import 'package:metronome2/store/rhythm_provider.dart';
-import 'package:metronome2/ui/app.dart';
-import 'package:metronome2/ui/sound_toggle_button.dart';
+import 'package:metronome/audio_player_provider.dart';
+import 'package:metronome/constants.dart';
+import 'package:metronome/store/rhythm_provider.dart';
+import 'package:metronome/ui/app.dart';
+import 'package:metronome/ui/sound_toggle_button.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockAudioPlayer extends Mock implements AudioPlayer {}
@@ -99,5 +99,33 @@ void main() {
     await tester.pump(SoundToggleButton.getRhythmInterval(kMinRhythm) * 5);
     verify(() => audioPlayer.stop()).called(5);
     verify(() => audioPlayer.resume()).called(5);
+  });
+
+  testWidgets('when I click on + button, the rhythm is incremented',
+      (tester) async {
+    final (:app, audioPlayer: _) = createApp();
+    await tester.pumpWidget(app);
+
+    await tester.pumpAndSettle();
+
+    expect(find.text(kDefaultRhythm.toString()), findsOneWidget);
+    await tester.tap(find.byIcon(kIncrementRhythmIcon));
+    await tester.pumpAndSettle();
+
+    expect(find.text((kDefaultRhythm + 1).toString()), findsOneWidget);
+  });
+
+  testWidgets('when I click on - button, the rhythm is decremented',
+      (tester) async {
+    final (:app, audioPlayer: _) = createApp();
+    await tester.pumpWidget(app);
+
+    await tester.pumpAndSettle();
+
+    expect(find.text(kDefaultRhythm.toString()), findsOneWidget);
+    await tester.tap(find.byIcon(kDecrementRhythmIcon));
+    await tester.pumpAndSettle();
+
+    expect(find.text((kDefaultRhythm - 1).toString()), findsOneWidget);
   });
 }

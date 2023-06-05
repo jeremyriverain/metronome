@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:metronome2/constants.dart';
-import 'package:metronome2/store/rhythm_store.dart';
+import 'package:metronome/constants.dart';
+import 'package:metronome/store/rhythm_store.dart';
 
 class RhythmProvider extends StatefulWidget {
   static RhythmProviderState of(BuildContext context) {
@@ -29,6 +29,18 @@ class RhythmProviderState extends State<RhythmProvider> {
   void updateRhythm(int val) {
     setState(() {
       _rhythm = val;
+    });
+  }
+
+  void increment() {
+    setState(() {
+      _rhythm++;
+    });
+  }
+
+  void decrement() {
+    setState(() {
+      _rhythm--;
     });
   }
 

@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "metronome2" "\0"
+            VALUE "FileDescription", "metronome" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "metronome2" "\0"
+            VALUE "InternalName", "metronome" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "metronome2.exe" "\0"
-            VALUE "ProductName", "metronome2" "\0"
+            VALUE "OriginalFilename", "metronome.exe" "\0"
+            VALUE "ProductName", "metronome" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

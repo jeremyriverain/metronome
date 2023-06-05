@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:metronome2/audio_player_provider.dart';
-import 'package:metronome2/store/rhythm_provider.dart';
-import 'package:metronome2/ui/app.dart';
+import 'package:metronome/audio_player_provider.dart';
+import 'package:metronome/store/rhythm_provider.dart';
+import 'package:metronome/ui/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

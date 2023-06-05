@@ -1,4 +1,4 @@
-# metronome2
+# metronome
 
 A new Flutter project.
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:metronome2/constants.dart';
-import 'package:metronome2/store/rhythm_provider.dart';
-import 'package:metronome2/store/rhythm_store.dart';
+import 'package:metronome/constants.dart';
+import 'package:metronome/store/rhythm_provider.dart';
+import 'package:metronome/store/rhythm_store.dart';
 
 class RhythmSlider extends StatelessWidget {
   const RhythmSlider({super.key});

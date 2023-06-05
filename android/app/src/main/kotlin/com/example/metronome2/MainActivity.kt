@@ -1,4 +1,4 @@
-package com.example.metronome2
+package com.example.metronome
 
 import io.flutter.embedding.android.FlutterActivity
 
