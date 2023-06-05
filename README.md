@@ -5,3 +5,9 @@
 Métronome réalisé avec [Flutter](https://flutter.dev/).
 
 <img src="./assets/app_screenshot.png" alt="Capture d'écran de l'application" width="300" />
+
+## Générer l'icône de démarrage
+
+```
+flutter pub run flutter_launcher_icons
+```

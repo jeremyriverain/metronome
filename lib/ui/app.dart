@@ -30,7 +30,7 @@ class App extends StatelessWidget {
                 onPressed: () => RhythmProvider.of(context).decrement(),
               ),
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: RhythmLabel(),
               ),
               RhythmButton(
