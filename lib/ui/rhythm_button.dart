@@ -12,13 +12,16 @@ class RhythmButton extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return TextButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         shape: const CircleBorder(),
         padding: const EdgeInsets.all(10),
       ),
-      child: Icon(icon),
+      child: Icon(
+        icon,
+        size: 35,
+      ),
     );
   }
 }

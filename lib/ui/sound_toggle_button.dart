@@ -56,5 +56,3 @@ class _SoundToggleButtonState extends State<SoundToggleButton> {
     );
   }
 }
-
-// et

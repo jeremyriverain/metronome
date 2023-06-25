@@ -17,64 +17,44 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        sliderTheme:
+            SliderThemeData(overlayShape: SliderComponentShape.noThumb),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: LayoutBuilder(builder: (context, constraints) {
-          final labelAndButtons = Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RhythmButton(
-                icon: kDecrementRhythmIcon,
-                onPressed: () => RhythmProvider.of(context).decrement(),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: RhythmLabel(),
-              ),
-              RhythmButton(
-                icon: kIncrementRhythmIcon,
-                onPressed: () => RhythmProvider.of(context).increment(),
-              ),
-            ],
-          );
-          if (constraints.maxWidth > 500) {
-            // Mise en page grand écran
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 350,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      labelAndButtons,
-                      const Padding(
-                        padding: EdgeInsets.only(top: 8),
-                        child: RhythmSlider(),
-                      ),
-                    ],
-                  ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: RhythmLabel(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 450),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RhythmButton(
+                      icon: kDecrementRhythmIcon,
+                      onPressed: () => RhythmProvider.of(context).decrement(),
+                    ),
+                    const Expanded(
+                      child: RhythmSlider(),
+                    ),
+                    RhythmButton(
+                      icon: kIncrementRhythmIcon,
+                      onPressed: () => RhythmProvider.of(context).increment(),
+                    ),
+                  ],
                 ),
-                const SoundToggleButton(),
-              ],
-            );
-          }
-
-          // Mise en page petit écran (téléphone)
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              labelAndButtons,
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 8),
-                child: RhythmSlider(),
               ),
-              const SoundToggleButton(),
-            ],
-          );
-        }),
+            ),
+            const SoundToggleButton(),
+          ],
+        ),
       ),
     );
   }
