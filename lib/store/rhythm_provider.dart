@@ -33,12 +33,18 @@ class RhythmProviderState extends State<RhythmProvider> {
   }
 
   void increment() {
+    if (_rhythm == kMaxRhythm) {
+      return;
+    }
     setState(() {
       _rhythm++;
     });
   }
 
   void decrement() {
+    if (_rhythm == kMinRhythm) {
+      return;
+    }
     setState(() {
       _rhythm--;
     });

@@ -128,4 +128,42 @@ void main() {
 
     expect(find.text((kDefaultRhythm - 1).toString()), findsOneWidget);
   });
+
+  testWidgets(
+      'i cannot click on the - button when the rhythm is the lowest possible',
+      (tester) async {
+    final (:app, audioPlayer: _) = createApp();
+    await tester.pumpWidget(app);
+
+    await tester.dragUntilVisible(
+      find.text(kMinRhythm.toString()), // what you want to find
+      find.byType(Slider), // widget you want to scroll
+      const Offset(-300, 0), // delta to move
+    );
+    expect(find.text(kMinRhythm.toString()), findsOneWidget);
+
+    await tester.tap(find.byIcon(kDecrementRhythmIcon));
+    await tester.pumpAndSettle();
+
+    expect(find.text(kMinRhythm.toString()), findsOneWidget);
+  });
+
+  testWidgets(
+      'i cannot click on the + button when the rhythm is the highest possible',
+      (tester) async {
+    final (:app, audioPlayer: _) = createApp();
+    await tester.pumpWidget(app);
+
+    await tester.dragUntilVisible(
+      find.text(kMaxRhythm.toString()), // what you want to find
+      find.byType(Slider), // widget you want to scroll
+      const Offset(300, 0), // delta to move
+    );
+    expect(find.text(kMaxRhythm.toString()), findsOneWidget);
+
+    await tester.tap(find.byIcon(kIncrementRhythmIcon));
+    await tester.pumpAndSettle();
+
+    expect(find.text(kMaxRhythm.toString()), findsOneWidget);
+  });
 }

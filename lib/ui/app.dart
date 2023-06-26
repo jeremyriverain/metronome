@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:metronome/constants.dart';
+import 'package:metronome/store/rhythm_store.dart';
 import 'package:metronome/ui/rhythm_button.dart';
 import 'package:metronome/ui/rhythm_label.dart';
 import 'package:metronome/store/rhythm_provider.dart';
@@ -15,6 +16,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final rhythm = RhythmStore.of(context).rhythm;
     return MaterialApp(
       theme: ThemeData(
         sliderTheme:
@@ -40,6 +42,7 @@ class App extends StatelessWidget {
                     RhythmButton(
                       icon: kDecrementRhythmIcon,
                       onPressed: () => RhythmProvider.of(context).decrement(),
+                      canPress: rhythm != kMinRhythm,
                     ),
                     const Expanded(
                       child: RhythmSlider(),
@@ -47,6 +50,7 @@ class App extends StatelessWidget {
                     RhythmButton(
                       icon: kIncrementRhythmIcon,
                       onPressed: () => RhythmProvider.of(context).increment(),
+                      canPress: rhythm != kMaxRhythm,
                     ),
                   ],
                 ),
