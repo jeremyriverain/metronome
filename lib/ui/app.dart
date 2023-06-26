@@ -14,11 +14,28 @@ class App extends StatelessWidget {
     super.key,
   });
 
+  Color calculateColor(double value) {
+    const Color lowColor = kLowestColor;
+    const Color highColor = kHighestColor;
+
+    double ratio = (value - kMinRhythm) / (kMaxRhythm - kMinRhythm);
+    ratio = ratio.clamp(0.0, 1.0);
+    final int red =
+        (lowColor.red + (highColor.red - lowColor.red) * ratio).round();
+    final int green =
+        (lowColor.green + (highColor.green - lowColor.green) * ratio).round();
+    final int blue =
+        (lowColor.blue + (highColor.blue - lowColor.blue) * ratio).round();
+
+    return Color.fromRGBO(red, green, blue, 1.0);
+  }
+
   @override
   Widget build(BuildContext context) {
     final rhythm = RhythmStore.of(context).rhythm;
     return MaterialApp(
       theme: ThemeData(
+        colorSchemeSeed: calculateColor(rhythm.toDouble()),
         sliderTheme:
             SliderThemeData(overlayShape: SliderComponentShape.noThumb),
         useMaterial3: true,

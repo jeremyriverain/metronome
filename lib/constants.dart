@@ -9,6 +9,9 @@ const kMinRhythm = 30;
 // rythme maximum du métronome
 const kMaxRhythm = 180;
 
+const kLowestColor = Color(0xff9c27b0);
+const kHighestColor = Color(0xfff44336);
+
 // icône du bouton "lecture"
 const kPlayIcon = Icons.play_arrow;
 
