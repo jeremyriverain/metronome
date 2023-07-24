@@ -18,7 +18,6 @@ class AudioPlayerProvider extends InheritedWidget {
       ..setPlayerMode(
         PlayerMode.lowLatency,
       );
-    await audioPlayer.setSource(AssetSource('metronome-sound.mp3'));
     return audioPlayer;
   }
 

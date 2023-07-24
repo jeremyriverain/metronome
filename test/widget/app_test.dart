@@ -13,8 +13,11 @@ class MockAudioPlayer extends Mock implements AudioPlayer {}
 createApp() {
   final audioPlayer = MockAudioPlayer();
 
-  when(() => audioPlayer.stop()).thenAnswer((_) async {});
-  when(() => audioPlayer.resume()).thenAnswer((_) async {});
+  when(() => audioPlayer.pause()).thenAnswer((_) async {});
+  when(() => audioPlayer.seek(Duration.zero)).thenAnswer((_) async {});
+  when(() => audioPlayer.play(soundSource)).thenAnswer((_) async {
+    return;
+  });
 
   return (
     app: AudioPlayerProvider(
@@ -64,10 +67,12 @@ void main() {
     await tester.pump(SoundToggleButton.getRhythmInterval(kDefaultRhythm) +
         SoundToggleButton.getRhythmInterval(kDefaultRhythm));
     verifyInOrder([
-      () => audioPlayer.stop(),
-      () => audioPlayer.resume(),
-      () => audioPlayer.stop(),
-      () => audioPlayer.resume(),
+      () => audioPlayer.pause(),
+      () => audioPlayer.seek(Duration.zero),
+      () => audioPlayer.play(soundSource),
+      () => audioPlayer.pause(),
+      () => audioPlayer.seek(Duration.zero),
+      () => audioPlayer.play(soundSource),
     ]);
 
     await tester.tap(find.byIcon(kPauseIcon));
@@ -97,8 +102,7 @@ void main() {
     await tester.tap(find.byIcon(kPlayIcon));
 
     await tester.pump(SoundToggleButton.getRhythmInterval(kMinRhythm) * 5);
-    verify(() => audioPlayer.stop()).called(5);
-    verify(() => audioPlayer.resume()).called(5);
+    verify(() => audioPlayer.play(soundSource)).called(5);
   });
 
   testWidgets('when I click on + button, the rhythm is incremented',

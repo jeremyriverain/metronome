@@ -25,12 +25,13 @@ class _SoundToggleButtonState extends State<SoundToggleButton> {
     periodicTimer?.cancel();
     periodicTimer = Timer.periodic(
       SoundToggleButton.getRhythmInterval(RhythmStore.of(context).rhythm),
-      (_) {
-        if (isPlaying) {
-          audioPlayer.stop();
-          audioPlayer.resume();
+      (_) async {
+        if (mounted && isPlaying) {
+          await audioPlayer.pause();
+          await audioPlayer.seek(Duration.zero);
+          await audioPlayer.play(soundSource);
         }
-      }, //
+      },
     );
     super.didChangeDependencies();
   }
@@ -38,6 +39,7 @@ class _SoundToggleButtonState extends State<SoundToggleButton> {
   @override
   void dispose() {
     periodicTimer?.cancel();
+
     super.dispose();
   }
 

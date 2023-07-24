@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 // représente le rythme du métronome par défaut quand on arrive dans l'application
@@ -23,3 +24,5 @@ const kIncrementRhythmIcon = Icons.add;
 
 // icône du bouton permettant d'incrémenter le rythme
 const kDecrementRhythmIcon = Icons.remove;
+
+final soundSource = AssetSource('metronome-sound.mp3');
